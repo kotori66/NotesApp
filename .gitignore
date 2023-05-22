@@ -3,8 +3,5 @@
 /app/db.sqlite3
 /app/media/images/
 /app/app/db.sqlite3
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/NotesApp.iml
-/.idea/inspectionProfiles/profiles_settings.xml
-/.idea/vcs.xml
+/.idea/
+

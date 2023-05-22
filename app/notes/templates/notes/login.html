@@ -1,0 +1,19 @@
+{% extends "notes/base.html" %}
+{% block main %}
+<div class="w-25 my-5 m-auto">
+        <h1 class="h3 mb-3 fw-normal text-center">{{ title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="text-danger">{{ form.non_field_errors }}</div>
+        {% for f in form %}
+        <div class="form-group">
+            <label class="form-label">{{ f.label }}</label>
+            {{ f }}
+            <div class="text-danger">{{ f.errors }}</div>
+        </div>
+        {% endfor %}
+        <button class="w-100 my-4 btn btn-lg btn-primary" type="submit">Войти</button>
+    </form>
+</div>
+{% endblock %}
+

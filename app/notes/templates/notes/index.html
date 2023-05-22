@@ -1,0 +1,37 @@
+{% extends "notes/base.html" %}
+
+{% block main %}
+{% if user.is_authenticated %}
+<div class="album py-5">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for n in notes %}
+            <div class="col">
+                <div class="p-4 mb-4 bg-dark rounded-3">
+                    {% if n.image%}
+                    <img src="{{ n.image.url }}" class="img-fluid rounded">
+                    {% endif %}
+                    <div class="container-fluid text-bg-dark">
+                        <h1 class="display-6">{{n.title|capfirst}}</h1>
+                        <p class="col-md-8 fs-4">{{n.text_note|default_if_none:"Пусто"|truncatewords:3}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a class="btn btn-outline-light" href="{{ n.get_absolute_url }}" role="button">Посмотреть</a>
+                                <a class="btn btn-outline-danger" href="{% url 'delete' n.slug %}" role="button">Удалить</a>
+                            </div>
+                            <small class="text-end-secondary">{{ n.created }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <h1 class="display-5 fw-bold text-body-emphasis">Заметки отсутствуют</h1>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% else %}
+    <p>не авторизован</p>
+{% endif%}
+{% endblock main %}
+

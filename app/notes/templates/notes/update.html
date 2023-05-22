@@ -1,0 +1,17 @@
+{% extends "notes/base.html" %}
+{% block main %}
+<div class="w-50 my-4 m-auto">
+    <h1 class="text-center mb-4 text-body-emphasis">Изменение заметки</h1>
+    {% for f in form %}
+    {% csrf_token %}
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="form-label">{{ f.label }}</label>
+            {{ f }}
+            <div class="text-danger">{{ f.errors }}</div>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary mt-4">Изменить</button>
+    </form>
+</div>
+{% endblock main %}

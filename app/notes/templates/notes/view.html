@@ -1,0 +1,23 @@
+{% extends "notes/base.html" %}
+{% block main %}
+<div class="px-4 py-5 my-3 text-center">
+    <div class="row gx-5">
+{% if note.image %}
+        <div class="col">
+            <img src="{{ note.image.url }}" class="img-fluid">
+        </div>
+{% endif %}
+        <div class="col card shadow mx-5">
+            <div class="d-flex flex-column card-body ">
+                <h2 class="card-title display-6">{{ note.title|capfirst }}</h2>
+                <h6 class="card-subtitle mb-2 text-body-secondary">{{ note.created }}</h6>
+                <p class="fs-2 text-body-emphasis fs-4">{{ note.text_note|default_if_none:"Пусто"|capfirst }}</p>
+                        <div class=" mb-3 mt-auto justify-content-sm-center">
+                            <a href="{% url 'update' note.slug %}" class="btn btn-primary btn-lg px-4 gap-3">Изменить</a>
+                            <a href="{% url 'delete' note.slug %}" class="btn btn-danger btn-lg px-4">Удалить</a>
+                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}
